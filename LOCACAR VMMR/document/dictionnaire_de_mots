@@ -1,0 +1,307 @@
+-- brouillon -- 
+
+dictionnaire Matthieu :
+- locacare
+- location de voiture
+- agance = 20
+- agance acses réso
+- gestion supretion edition
+- consultation des location
+- production de divèrce statistique (chifre d'affere par agance)
+- consultation des disponibilité des véicule 
+- service des reservation centrale
+- numéro vers unique pour toute les agance pour toute les location par téléphone
+- réservation par 3 moyens par téléphone internet (locacar) et directement en agance
+- un compt client est créé avant toute réservation
+- donnée nésésère a la demande de location :identifient du client catégorie du véicule demander, liste des option demander date et heure de début de location, agaance de départ, date et heure heur et heure de fin de location, état de la de la demande, inicialisé valider annuler valider.locationune demande de location est créé avec le statu inicialiser.location
+un opérateur trète la demande en effectuent :
+- vérifient la disponibilité du véicule demander. location affect un véicule.location
+il peut il y avoir des chengement d'option de modelle ou de catégorie si le véicule ne convien pas au client
+- avec confirmation au client.location
+- le service de réservation centrale :
+consulté la disponibilité des véicule.
+- géré les location.
+
+chaque agance a la possibité :
+- de consulté son parck de véicule.
+- géré les demandes de location de location, qui les conserne.location.
+faire une demande de leocation
+- chaque véicule est localisé a une agance a un un insten.locat
+catégorie de véicule :
+- petit
+- moyen
+- grand
+- utilitère
+-prestige
+- cemping car
+tariffe pour une une heure de location selon la catégorie du véicule. (voir cahier des charge p10)
+les véicule peuvent être équiper de diver potion qui sont forfaitère :
+- le systyme de la facture devra comporté toute les donnée utille
+par défaut une agance doit avoir une disène de véicule par agance
+une agance doit avoir deux jestionèr.
+deux gestionère par agance. 10 gestionère SRC
+il faut aumoin qu'il y est 4 véicule par agance en location pendant les période basse et 10 pendant les fête.
+- utilisateur différent type : annonime(il s'agit d'utilisateur non autentifier il peuvent acseder au sit locale et à la liste des agance) , client,(il s'ajit d'un utilisateur qui a un compt client et qui est autentifier, il peut faire une demande de location en ligne annuler une location, ) agence (il s'agit du personelle des agence, il peut consulté les disponibilité  des véicule pour son agence. Consulté la liste des location pour sons agence, géré les demande de locationc il s'agit du servic centrale il a acses a la base de donnée générale et par agence. il peut consulté les disponibilité des véicule dans tout les agence
+enregistré les demande de client qui on fait des demande par téléphone.) damin(il s'agit des administrateur de l'apliquation, se profil peut géré l'ensemble des tache de la base de donnée)
+
+
+
+
+dictionnaire Moaaz : 
+
+- location 
+- voiture 
+- reseux
+- agence 
+- site de véhicule 
+- sentre d'appels 
+- demmande de location 
+- client par agence, en ligne ou par telephone 
+- operateur 
+- compt 
+- date de demande de location 
+- id_client 
+- catégorie de vhéicule demandé 
+- liste des options 
+- ref de vhéicule atribué 
+- date_heure de debut de location 
+- date_heure de fin de location 
+- etat de la demande (initialisé - validé - annulé)
+- categories de vehicule : (petit - moyen - grand - utilitaire - prestige - camping car)
+- tarif par heure selon la catigorie : tableua à consulter dans le cahier des charges peut étre évoluer 
+- list des option : tableua à consulter dans le decument 
+- une 20ene d'agences
+- une 10ene de vehicule par agence 
+- deux gestionnaire par agence 
+- 10 gestionnaires SRC 
+- utilisateur : deffirentes types (anonime - client - agence )
+- anonime : non authentifié 
+- client : un compt, authentifié, éffectuer une demande, historique, annuler une location
+- agence : personnels situé dans une agence, consulter les véhicules de 
+l'agnce, liste de location pour l'agence, enregistrer les demande par telephone 
+gerer les demande de location   
+- profile SRC : personnel centrals, consulter la disponibilité par tout les agence gestion géneral 
+- admin : administrateur de l'application, gestion de l'inseble des taches de la bdd 
+
+<DICTIONNAIRE DE MOTS>
+- voiture (entité) : 
+    - voi_id (PK)
+    - voi_marque 
+    - voi_plaque
+    - voi_color  
+
+- categorie (entité) : 
+    - cat_id (PK)
+    - cat_label 
+    
+- tranche (entité) : 
+    - tra_id (PK)
+    - tra_min int
+    - tra_max int 
+      
+- accesseoire (entité) : 
+    - acc_id (PK)
+    - acc_label 
+    - acc_prix 
+
+- departement (entité) : 
+    - dep_id (PK) 
+    - dep_label
+
+- utilisateur (entité) : 
+    - uti_id (PK)
+    - uti_nom 
+    - uti_prenom
+    - uti_login
+    - uti_mdp 
+    - uti_email 
+    - uti_telephone 
+    - uti_adresse 
+    - uti_profil ("client" - "agent" - "src" - "admin")
+
+- agence (entité) : 
+    - age_id (PK)
+    - age_nom
+     
+    
+- location (entité) : 
+    - loc_id (PK)
+    - loc_date_demande     
+    - loc_debut 
+    - loc_fin
+    - loc_type ("en ligne" - "par telephone" - "en présentiel") 
+    - loc_statut ("initialisée" - "validée" - annulée")  
+
+Règles de gestion 
+R1 : un département peut avoir 1 ou plusieurs agences. 
+R2 : une voiture appartient à une et une seule agence. 
+R3 : une voiture n'appartient qu'à une et une seule catégorie. 
+R4 : une voiture peut avoir 0 ou plusieurs options. 
+R5 : chaque agence est gérée par 2 ou plusieurs agents. 
+R6 : un tarif different est alloué par catégorie et par trannche de temps.
+R7 : une location ne peut conserner qu'une seule voiture et ne peut être réaliser par qu'un seul client.
+R8 : pour chaque locatiion n'existe qu'un agence de depart et un agence d'arrivé de voiture  
+
+<MCD>
+
+- voiture (entité) : 
+    - voi_id : int (PK)
+    - voi_marque : varchar(100)
+    - voi_plaque : varchar(100)
+    - voi_color : varchar(100)
+
+- categorie (entité) : 
+    - cat_id : int (PK)
+    - cat_label : varchar(100)
+    
+- tranche (entité) : 
+    - tra_id : int (PK)
+    - tra_min : int 
+    - tra_max : int
+      
+- accessoire (entité) : 
+    - acc_id : int (PK)
+    - acc_label : varchar(100)
+    - acc_prix : float 
+
+- departement (entité) : 
+    - dep_id : int (PK) 
+    - dep_label : varchar(100)
+
+- utilisateur (entité) : 
+    - uti_id : int (PK)
+    - uti_nom : varchar(200)
+    - uti_prenom : varchar(200)
+    - uti_login : varchar(100)
+    - uti_mdp : varchar(500)
+    - uti_email : varchar(100)
+    - uti_telephone : varchar(100)
+    - uti_adresse : varchar(500)
+    - uti_profil : ("client" - "agent" - "src" - "admin")
+
+- agence (entité) : 
+    - age_id : int (PK)
+    - age_nom : varchar(200)
+     
+    
+- location (entité) : 
+    - loc_id : int (PK)
+    - loc_date_demande : date    
+    - loc_debut : datetime
+    - loc_fin : datetime
+    - loc_type : varchar(100) ("en ligne" - "par telephone" - "en présentiel") 
+    - loc_statut : varchar(100) ("initialisée" - "validée" - annulée")
+
+<ASSOCIATION>
+
+- localiser : 
+    - agence : 1,1
+    - departement : 1,N
+
+- appartenir : 
+    - voiture : 1,1
+    - agence : 1,N
+
+- lier : 
+    - voiture : 1,1
+    - categorie : 1,N
+
+- contenir : 
+    - locotion : 0,N
+    - accessoire : 0,N
+
+- gerer  : 
+    - utilisateur : 1,1
+    - agence : 0,N
+
+- allouer (prix): 
+    - tranche : 1,N
+    - categorie : 1,N 
+
+- conserner : 
+    - location : 1,1
+    - voiture : 1,N
+
+- realiser : 
+    - utilisateur : 1,N
+    - location : 1,1
+
+- partir :
+    - location : 1,1 
+    - agence : 1,N
+
+- arriver :
+    - location : 1,1 
+    - agence : 1,N
+
+</MCD>
+<MLD>
+- voiture (entité) : 
+    - voi_id : int (PK)
+    - voi_marque : varchar(100)
+    - voi_plaque : varchar(100)
+    - voi_color : varchar(100)
+    - voi_agence int (FK)
+    - voi_categorie int (FK)
+
+- categorie (entité) : 
+    - cat_id : int (PK)
+    - cat_label : varchar(100)
+    
+- tranche (entité) : 
+    - tra_id : int (PK)
+    - tra_min : int
+    - tra_max : int   
+      
+- accessoire (entité) : 
+    - acc_id : int (PK)
+    - acc_label : varchar(100)
+    - acc_prix : float 
+
+- departement (entité) : 
+    - dep_id : int (PK) 
+    - dep_label : varchar(100)
+
+- utilisateur (entité) : 
+    - uti_id : int (PK)
+    - uti_nom : varchar(200)
+    - uti_prenom : varchar(200)
+    - uti_login : varchar(100)
+    - uti_mdp : varchar(500)
+    - uti_email : varchar(100)
+    - uti_telephone : varchar(100)
+    - uti_adresse : varchar(500)
+    - uti_profil : varchar(200) ("client" - "agent" - "src" - "admin")
+    - uti_agence int (FK)
+
+- agence (entité) : 
+    - age_id : int (PK)
+    - age_nom : varchar(200)
+    - age_departement int (FK)     
+    
+- location (entité) : 
+    - loc_id : int (PK)
+    - loc_utilisateur : int (FK)
+    - loc_voiture : int (FK)
+    - loc_date_demande : date    
+    - loc_debut : datetime
+    - loc_fin : datetime
+    - loc_type : varchar(100)  
+    - loc_statut : varchar(100) 
+    - loc_agence_depart : int (FK)
+    - loc_agence_arrivee : int (FK)
+
+- contenir (entité) : 
+    - con_id : int (PK)
+    - con_location int (FK)
+    - con_accessoire : int (FK)
+
+- allouer : 
+    - all_id : int (PK)
+    - all_categorie : int (FK)
+    - all_tranche : int (FK)
+    - all_prix : float 
+
+</MLD>
+
+ 
